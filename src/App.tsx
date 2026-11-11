@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import DashboardHome from "./components/dashboard/DashboardHome";
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import TrainerDashboard from "./pages/trainer/TrainerDashboard";
+import PetManagement from "./pages/admin/PetManagement";
 
 function App() {
   return (
@@ -25,6 +26,15 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <DashboardHome role="ADMIN" />
+            </ProtectedRoute>
+          }
+        />
+        {/* Admin Pet Management Route */}
+        <Route
+          path="/admin/pets"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <PetManagement />
             </ProtectedRoute>
           }
         />
