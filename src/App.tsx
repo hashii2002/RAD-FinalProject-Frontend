@@ -6,6 +6,8 @@ import ResetPassword from "./pages/auth/ResetPassword";
 
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import DashboardHome from "./components/dashboard/DashboardHome";
+import CustomerDashboard from "./pages/customer/CustomerDashboard";
+import TrainerDashboard from "./pages/trainer/TrainerDashboard";
 
 function App() {
   return (
@@ -32,7 +34,7 @@ function App() {
           path="/trainer/dashboard"
           element={
             <ProtectedRoute allowedRoles={["TRAINER"]}>
-              <DashboardHome role="TRAINER" />
+              <TrainerDashboard/>
             </ProtectedRoute>
           }
         />
@@ -42,7 +44,7 @@ function App() {
           path="/customer/dashboard"
           element={
             <ProtectedRoute allowedRoles={["CUSTOMER"]}>
-              <DashboardHome role="CUSTOMER" />
+              <CustomerDashboard />
             </ProtectedRoute>
           }
         />
