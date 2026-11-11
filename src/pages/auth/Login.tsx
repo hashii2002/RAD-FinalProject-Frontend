@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PawPrint, Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import axios from "axios";
 
@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,10 +30,28 @@ function Login() {
 
     try {
       setIsLoading(true);
-
+      
       const loggedInUser = await login(email.trim(), password);
 
       setSuccessMessage(`Welcome back, ${loggedInUser.name}!`);
+
+      switch (loggedInUser.role) {
+        case "ADMIN":
+          navigate("/admin/dashboard", { replace: true });
+          break;
+
+        case "TRAINER":
+          navigate("/trainer/dashboard", { replace: true });
+          break;
+
+        case "CUSTOMER":
+          navigate("/customer/dashboard", { replace: true });
+          break;
+
+        default:
+          navigate("/login", { replace: true });
+      }
+
 
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
