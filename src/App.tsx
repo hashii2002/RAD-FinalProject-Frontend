@@ -11,6 +11,7 @@ import TrainerDashboard from "./pages/trainer/TrainerDashboard";
 import PetManagement from "./pages/admin/PetManagement";
 import PetOrders from "./pages/admin/PetOrders";
 import TrainingPrograms from "./pages/admin/TrainingPrograms";
+import TrainingBookings from "./pages/admin/TrainingBookings";
 
 function App() {
   return (
@@ -54,6 +55,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <TrainingPrograms />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <TrainingBookings />
             </ProtectedRoute>
           }
         />
