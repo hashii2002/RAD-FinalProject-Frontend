@@ -12,6 +12,7 @@ import PetManagement from "./pages/admin/PetManagement";
 import PetOrders from "./pages/admin/PetOrders";
 import TrainingPrograms from "./pages/admin/TrainingPrograms";
 import TrainingBookings from "./pages/admin/TrainingBookings";
+import UserManagement from "./pages/admin/UserManagement";
 
 function App() {
   return (
@@ -63,6 +64,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <TrainingBookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <UserManagement />
             </ProtectedRoute>
           }
         />
