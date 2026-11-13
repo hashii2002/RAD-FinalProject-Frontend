@@ -10,6 +10,7 @@ import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import TrainerDashboard from "./pages/trainer/TrainerDashboard";
 import PetManagement from "./pages/admin/PetManagement";
 import PetOrders from "./pages/admin/PetOrders";
+import TrainingPrograms from "./pages/admin/TrainingPrograms";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
-        {/* Admin Routes */}
+        {/* ================== Admin Routes ===========================*/}
         <Route
           path="/admin/dashboard"
           element={
@@ -48,8 +49,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/programs"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <TrainingPrograms />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Trainer Routes */}
+        {/*===================== Trainer Routes ============================ */}
         <Route
           path="/trainer/dashboard"
           element={
@@ -59,7 +68,7 @@ function App() {
           }
         />
 
-        {/* Customer Routes */}
+        {/* ========================== Customer Routes ============================ */}
         <Route
           path="/customer/dashboard"
           element={
