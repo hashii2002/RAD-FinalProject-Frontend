@@ -9,6 +9,7 @@ import DashboardHome from "./components/dashboard/DashboardHome";
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import TrainerDashboard from "./pages/trainer/TrainerDashboard";
 import PetManagement from "./pages/admin/PetManagement";
+import PetOrders from "./pages/admin/PetOrders";
 
 function App() {
   return (
@@ -35,6 +36,15 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <PetManagement />
+            </ProtectedRoute>
+          }
+        />
+        {/* Admin Pet Orders Route */}
+        <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <PetOrders />
             </ProtectedRoute>
           }
         />
