@@ -192,7 +192,6 @@ const Reports = () => {
 
       newWindow.location.href = pdfUrl;
 
-      // Release the temporary PDF URL when the page is closed.
       const releaseUrl = () => URL.revokeObjectURL(pdfUrl);
 
       newWindow.addEventListener("beforeunload", releaseUrl, {
