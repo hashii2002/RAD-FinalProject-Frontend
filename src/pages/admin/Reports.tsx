@@ -412,7 +412,7 @@ const Reports = () => {
                     {report.title}
                   </h3>
 
-                  <p className="mt-2 min-h-[48px] text-sm leading-6 text-slate-500">
+                  <p className="mt-2 min-h-12 text-sm leading-6 text-slate-500">
                     {report.description}
                   </p>
                 </div>
