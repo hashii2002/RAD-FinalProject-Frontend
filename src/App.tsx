@@ -15,6 +15,7 @@ import TrainingBookings from "./pages/admin/TrainingBookings";
 import UserManagement from "./pages/admin/UserManagement";
 import PaymentManagement from "./pages/admin/PaymentManagement";
 import Reports from "./pages/admin/Reports";
+import MyProfile from "./pages/admin/MyProfile";
 
 function App() {
   return (
@@ -90,6 +91,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <Reports />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/profile"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <MyProfile />
             </ProtectedRoute>
           }
         />
