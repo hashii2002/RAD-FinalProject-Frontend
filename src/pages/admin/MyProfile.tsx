@@ -317,7 +317,7 @@ const MyProfile = () => {
         {/* Profile Overview */}
         <div className="mb-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-          <div className="h-28 bg-gradient-to-r from-[#18365C] via-[#254B73] to-[#269DA3]" />
+          <div className="h-28 bg-linear-to-r from-[#18365C] via-[#254B73] to-[#269DA3]" />
 
           <div className="px-5 pb-6 sm:px-7">
             <div className="-mt-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
