@@ -4,6 +4,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+
 import {
   LayoutDashboard,
   PawPrint,
@@ -87,7 +88,7 @@ const DashboardLayout = ({
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Mobile Sidebar Overlay */}
+    
       {sidebarOpen && (
         <div
           className="fixed inset-0 z-40 bg-slate-950/50 lg:hidden"
