@@ -51,3 +51,11 @@ export const deleteTrainingProgram = async (
 ): Promise<void> => {
   await api.delete(`/training-programs/${id}`);
 };
+
+export const getActiveTrainingPrograms = async (): Promise<TrainingProgram[]> => {
+  const response = await api.get<TrainingProgramResponse>("/training-programs" );
+
+  const programs = response.data.data as TrainingProgram[];
+
+  return programs.filter((program) => program.status === "ACTIVE");
+};
