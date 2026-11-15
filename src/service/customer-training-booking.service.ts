@@ -28,3 +28,18 @@ export const createCustomerTrainingBooking = async (
 
   return response.data.data;
 };
+
+interface MyBookingsResponse {
+  success: boolean;
+  message?: string;
+  count?: number;
+  data: TrainingBooking[];
+}
+
+export const getMyTrainingBookings = async (): Promise<TrainingBooking[]> => {
+  const response = await api.get<MyBookingsResponse>(
+    "/training-bookings/my-bookings"
+  );
+
+  return response.data.data;
+};

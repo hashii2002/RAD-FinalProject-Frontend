@@ -19,6 +19,7 @@ import MyProfile from "./pages/admin/MyProfile";
 import BrowsePets from "./pages/customer/BrowsePets";
 import MyOrders from "./pages/customer/MyOrders";
 import CustomerTrainingPrograms from "./pages/customer/CustomerTrainingPrograms";
+import MyBookings from "./pages/customer/MyBookings";
 
 function App() {
   return (
@@ -146,6 +147,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["CUSTOMER"]}>
               <CustomerTrainingPrograms />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+              <MyBookings />
             </ProtectedRoute>
           }
         />
