@@ -17,6 +17,7 @@ import PaymentManagement from "./pages/admin/PaymentManagement";
 import Reports from "./pages/admin/Reports";
 import MyProfile from "./pages/admin/MyProfile";
 import BrowsePets from "./pages/customer/BrowsePets";
+import MyOrders from "./pages/customer/MyOrders";
 
 function App() {
   return (
@@ -128,6 +129,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["CUSTOMER"]}>
               <BrowsePets />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/orders"
+          element={
+            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+              <MyOrders />
             </ProtectedRoute>
           }
         />

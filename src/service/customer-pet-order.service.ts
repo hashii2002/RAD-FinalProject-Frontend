@@ -10,9 +10,11 @@ interface CreatePetOrderData {
 interface PetOrderApiResponse {
   success: boolean;
   message?: string;
-  data: PetOrder;
+  count?: number;
+  data: PetOrder | PetOrder[];
 }
 
+// Create a new pet order
 export const createCustomerPetOrder = async (
   data: CreatePetOrderData
 ): Promise<PetOrder> => {
@@ -21,5 +23,14 @@ export const createCustomerPetOrder = async (
     data
   );
 
-  return response.data.data;
+  return response.data.data as PetOrder;
+};
+
+// View own order details for customer
+export const getMyCustomerPetOrders = async (): Promise<PetOrder[]> => {
+  const response = await api.get<PetOrderApiResponse>(
+    "/pet-orders/my-orders"
+  );
+
+  return response.data.data as PetOrder[];
 };

@@ -5,6 +5,17 @@ export type PetOrderStatus =
   | "REJECTED"
   | "CANCELLED";
 
+export interface OrderPetDetails {
+  _id: string;
+  name: string;
+  species: string;
+  breed: string;
+  ageMonths: number;
+  price: number;
+  imageUrl?: string;
+  status: "AVAILABLE" | "SOLD" | "RESERVED";
+}
+
 export interface PetOrder {
   _id?: string;
   orderId: string;
@@ -17,6 +28,7 @@ export interface PetOrder {
   status: PetOrderStatus;
   createdAt?: string;
   updatedAt?: string;
+  pet?: OrderPetDetails | null;
 }
 
 export interface PetOrderResponse {
