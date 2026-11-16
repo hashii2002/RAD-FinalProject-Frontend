@@ -24,6 +24,7 @@ import MyPayments from "./pages/customer/MyPayments";
 import CustomerMyProfile from "./pages/customer/CustomerMyProfile";
 import TrainerMyBookings from "./pages/trainer/TrainerMyBookings";
 import TrainingSessions from "./pages/trainer/TrainingSessions";
+import TrainerMyProfile from "./pages/trainer/TrainerMyProfile";
 
 function App() {
   return (
@@ -133,6 +134,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["TRAINER"]}>
               <TrainingSessions />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/trainer/profile"
+          element={
+            <ProtectedRoute allowedRoles={["TRAINER"]}>
+              <TrainerMyProfile />
             </ProtectedRoute>
           }
         />
