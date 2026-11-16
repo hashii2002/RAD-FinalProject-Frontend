@@ -21,6 +21,7 @@ import {
   X,
   Bell,
   ChevronRight,
+  PhoneCall,
 } from "lucide-react";
 
 import useAuth from "../../hooks/useAuth";
@@ -57,6 +58,7 @@ const menuItems = {
     { label: "My Bookings", path: "/customer/bookings", icon: CalendarDays },
     { label: "My Payments", path: "/customer/payments", icon: CreditCard },
     { label: "My Profile", path: "/customer/profile", icon: UserCircle },
+    { label: "Contact Us", path: "/customer/contact", icon: PhoneCall,},
   ],
 };
 
