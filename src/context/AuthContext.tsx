@@ -88,6 +88,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null);
   }, []);
 
+  const updateUser = useCallback((updatedUser: User) => {
+    setUser(updatedUser);
+  }, []);
+
   const contextValue: AuthContextType = {
     user,
     token,
@@ -95,6 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isLoading,
     login,
     logout,
+    updateUser,
   };
 
   return (

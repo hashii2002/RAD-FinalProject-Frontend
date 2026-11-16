@@ -21,6 +21,7 @@ import MyOrders from "./pages/customer/MyOrders";
 import CustomerTrainingPrograms from "./pages/customer/CustomerTrainingPrograms";
 import MyBookings from "./pages/customer/MyBookings";
 import MyPayments from "./pages/customer/MyPayments";
+import CustomerMyProfile from "./pages/customer/CustomerMyProfile";
 
 function App() {
   return (
@@ -164,6 +165,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["CUSTOMER"]}>
               <MyPayments />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/profile"
+          element={
+            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+              <CustomerMyProfile />
             </ProtectedRoute>
           }
         />
