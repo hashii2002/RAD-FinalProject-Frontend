@@ -152,15 +152,14 @@ const MyBookings = () => {
   return (
     <DashboardLayout role="TRAINER">
       <div className="min-h-screen space-y-7 bg-[#f8fafc] pb-8">
-
         {/* Page Header */}
-        <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-slate-900 via-blue-950 to-indigo-950 px-6 py-8 shadow-lg sm:px-8">
-          <div className="absolute -right-12 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
-          <div className="absolute -bottom-24 right-1/3 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-[#18365C] via-[#1D4964] to-[#269DA3] px-6 py-8 shadow-lg sm:px-8">
+          <div className="absolute -right-12 -top-24 h-72 w-72 rounded-full bg-teal-300/10 blur-3xl" />
+          <div className="absolute -bottom-24 right-1/3 h-64 w-64 rounded-full bg-cyan-300/10 blur-3xl" />
 
           <div className="relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
             <div>
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-blue-100">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-200/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-teal-100">
                 <Sparkles size={14} />
                 Trainer Workspace
               </div>
@@ -169,15 +168,15 @@ const MyBookings = () => {
                 My Bookings
               </h1>
 
-              <p className="mt-2 max-w-xl text-sm leading-6 text-blue-100/75">
+              <p className="mt-2 max-w-xl text-sm leading-6 text-blue-50/80">
                 Manage your assigned training bookings, monitor pet
                 progress, and stay on top of your upcoming appointments.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                <p className="text-xs text-blue-100/70">Total assigned</p>
+              <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                <p className="text-xs text-teal-100/80">Total assigned</p>
                 <p className="mt-1 text-2xl font-bold text-white">
                   {summary.total}
                 </p>
@@ -186,7 +185,7 @@ const MyBookings = () => {
               <button
                 onClick={fetchBookings}
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-blue-50 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#18365C] shadow-sm transition hover:bg-teal-50 disabled:opacity-60"
               >
                 <RefreshCw
                   size={16}
