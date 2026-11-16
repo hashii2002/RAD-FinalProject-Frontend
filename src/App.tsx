@@ -20,6 +20,7 @@ import BrowsePets from "./pages/customer/BrowsePets";
 import MyOrders from "./pages/customer/MyOrders";
 import CustomerTrainingPrograms from "./pages/customer/CustomerTrainingPrograms";
 import MyBookings from "./pages/customer/MyBookings";
+import MyPayments from "./pages/customer/MyPayments";
 
 function App() {
   return (
@@ -155,6 +156,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["CUSTOMER"]}>
               <MyBookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/payments"
+          element={
+            <ProtectedRoute allowedRoles={["CUSTOMER"]}>
+              <MyPayments />
             </ProtectedRoute>
           }
         />
