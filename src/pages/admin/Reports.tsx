@@ -15,10 +15,11 @@ import {
 } from "lucide-react";
 
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import api from "../../service/api";
+import {getReportData, type ReportType,} from "../../service/report.service";
+import {generateReportPDF, downloadReportPDF,} from "../../service/pdf-report.service";
 
 interface ReportItem {
-  id: string;
+  id: ReportType;
   title: string;
   description: string;
   endpoint: string;
@@ -111,37 +112,22 @@ const Reports = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const getErrorMessage = async (error: unknown): Promise<string> => {
+  
+  const getErrorMessage = (error: unknown): string => {
     const axiosError = error as {
       response?: {
-        data?: unknown;
+        data?: {
+          message?: string;
+        };
       };
       message?: string;
     };
 
-    const responseData = axiosError.response?.data;
-
-    if (responseData instanceof Blob) {
-      try {
-        const text = await responseData.text();
-        const parsed = JSON.parse(text);
-        return parsed.message || "Unable to generate report.";
-      } catch {
-        return "Unable to generate report. Please try again.";
-      }
-    }
-
-    if (
-      responseData &&
-      typeof responseData === "object" &&
-      "message" in responseData
-    ) {
-      return String(
-        (responseData as { message: string }).message
-      );
-    }
-
-    return axiosError.message || "Something went wrong.";
+    return (
+      axiosError.response?.data?.message ||
+      axiosError.message ||
+      "Unable to generate report. Please try again."
+    );
   };
 
   const handleViewReport = async (report: ReportItem) => {
@@ -162,7 +148,7 @@ const Reports = () => {
       newWindow.document.write(`
         <html>
           <head>
-            <title>Loading Report...</title>
+            <title>Generating PawPath Report</title>
             <style>
               body {
                 font-family: Arial, sans-serif;
@@ -171,6 +157,7 @@ const Reports = () => {
                 align-items: center;
                 height: 100vh;
                 color: #18365C;
+                background: #f8fafc;
               }
             </style>
           </head>
@@ -180,26 +167,25 @@ const Reports = () => {
         </html>
       `);
 
-      const response = await api.get(report.endpoint, {
-        responseType: "blob",
-      });
+      const reportData = await getReportData(report.id);
 
-      const pdfBlob = new Blob([response.data], {
-        type: "application/pdf",
-      });
+      const pdfBlob = await generateReportPDF(
+        report.id,
+        reportData
+      );
 
       const pdfUrl = URL.createObjectURL(pdfBlob);
 
       newWindow.location.href = pdfUrl;
 
-      const releaseUrl = () => URL.revokeObjectURL(pdfUrl);
-
-      newWindow.addEventListener("beforeunload", releaseUrl, {
-        once: true,
-      });
+      newWindow.addEventListener(
+        "beforeunload",
+        () => URL.revokeObjectURL(pdfUrl),
+        { once: true }
+      );
     } catch (error) {
       newWindow.close();
-      setErrorMessage(await getErrorMessage(error));
+      setErrorMessage(getErrorMessage(error));
     } finally {
       setLoadingReport(null);
       setLoadingAction(null);
@@ -212,27 +198,15 @@ const Reports = () => {
     setErrorMessage("");
 
     try {
-      const response = await api.get(report.endpoint, {
-        responseType: "blob",
-      });
+      const reportData = await getReportData(report.id);
 
-      const pdfBlob = new Blob([response.data], {
-        type: "application/pdf",
-      });
-
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-
-      const link = document.createElement("a");
-      link.href = pdfUrl;
-      link.download = report.fileName;
-
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-      URL.revokeObjectURL(pdfUrl);
+      await downloadReportPDF(
+        report.id,
+        reportData,
+        report.fileName
+      );
     } catch (error) {
-      setErrorMessage(await getErrorMessage(error));
+      setErrorMessage(getErrorMessage(error));
     } finally {
       setLoadingReport(null);
       setLoadingAction(null);

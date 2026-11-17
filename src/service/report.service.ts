@@ -13,12 +13,24 @@ const reportEndpoints: Record<ReportType, string> = {
   "system-summary": "/reports/system-summary",
 };
 
-export const downloadReport = async (
-  reportType: ReportType
-): Promise<Blob> => {
-  const response = await api.get(reportEndpoints[reportType], {
-    responseType: "blob",
-  });
+export interface ReportApiResponse<T = Record<string, any>> {
+  success: boolean;
+  message: string;
+  data: T;
+}
 
-  return response.data;
+export const getReportData = async <T = Record<string, any>>(
+  reportType: ReportType
+): Promise<T> => {
+  const response = await api.get<ReportApiResponse<T>>(
+    reportEndpoints[reportType]
+  );
+
+  if (!response.data.success) {
+    throw new Error(
+      response.data.message || "Unable to retrieve report data."
+    );
+  }
+
+  return response.data.data;
 };
